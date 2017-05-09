@@ -105,19 +105,18 @@ public class AdPostingPage extends Fragment{
         postAd =(Button)mView.findViewById(R.id.postAd);
 
 
-
         // adLocation = new Location() instantiate the new location here
 
         /**
          * Submit button;
          */
 
-
         postAd.setOnClickListener(new View.OnClickListener() {
+
+
+
             @Override
             public void onClick(View v) {
-
-
                 /**
                  * Convert the fetched data to be passed in the Locations object
                  */
@@ -133,17 +132,20 @@ public class AdPostingPage extends Fragment{
                  * Additional information about the apartment
                  */
 
+
                 mbedRooms =Integer.parseInt(bedRooms.getText().toString());
                 mbathRooms = Integer.parseInt(bathRooms.getText().toString());
                 misFurnished=Boolean.valueOf(isFurnished.getText().toString());
                 mPets =Boolean.valueOf(pets.getText().toString());
                 mPrice =Double.parseDouble(price.getText().toString());
 
+
                 /**
                  * send the data into an address object
                  */
 
                 mAddress =new Address(mstreetNumber,mstreetName,mCity,mProvince,mpostalCode,mCountry);
+
 
                 mLatLong = new LatLong(mAddress);
                 mLatLong.createAddress();
@@ -164,6 +166,7 @@ public class AdPostingPage extends Fragment{
                 post_ad_to_database();
             }
         });
+
         return mView;
     }
 
