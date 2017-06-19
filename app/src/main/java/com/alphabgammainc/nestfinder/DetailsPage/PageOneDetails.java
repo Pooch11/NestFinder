@@ -117,7 +117,7 @@ public class PageOneDetails extends Fragment implements OnMapReadyCallback, Deta
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(locations.getLat() , locations.getLon()), 15);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(locations.getLat() , locations.getLon()), 12);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             MapStyleOptions style =MapStyleOptions.loadRawResourceStyle(this.getContext(),R.raw.mapstyle);
@@ -190,20 +190,20 @@ public class PageOneDetails extends Fragment implements OnMapReadyCallback, Deta
     }
 
     public void populatePlaces(String place) {
-        if(this.nearbyPlacesList.get("place")==null) {
+        if(this.nearbyPlacesList.get(place)==null) {
             this.currentPlace = place;
-            if (nearbyPlacesList.size() != 0) {
-                map.clear();
-                map.addMarker(new MarkerOptions()
-                        .position(new LatLng(locations.getLat(), locations.getLon()))
-                        .title(locations.getAddress()));
-                // also place back the original marker
-            }
+            map.clear();
+            map.addMarker(new MarkerOptions()
+                    .position(new LatLng(locations.getLat(), locations.getLon()))
+                    .title(locations.getAddress()));
+            // also place back the original marker
             NearbyPlaces myPlaces = new NearbyPlaces();
             /**
              * this is where you pass the latitude and longitude along with the search type
              */
             myPlaces.getPlaces(locations.getLat(), locations.getLon(), place, map, this, mActivity);
+        } else {
+            setPlaces(this.nearbyPlacesList.get(place));
         }
     }
 

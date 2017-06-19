@@ -33,7 +33,7 @@ public class PlacesCachingManager {
     public static class Location implements BaseColumns {
         public static final String TABLE_NAME = "location";
         public static final String COLUMN_LAT = "lat";
-        public static final String COLUMN_LON = "lon";
+        public static final String COLUMN_LON = "lng";
         public static final String COLUMN_PLACE = "placeName";
         public static final String COLUMN_TIMESTAMP = "timestamp";
     }
@@ -42,7 +42,7 @@ public class PlacesCachingManager {
         public static final String TABLE_NAME = "place";
         public static final String COLUMN_PLACE_NAME = "name";
         public static final String COLUMN_LAT = "lat";
-        public static final String COLUMN_LON = "lon";
+        public static final String COLUMN_LON = "lng";
         public static final String COLUMN_VICINITY = "vicinity";
         public static final String LOCATION_ID = "locationId";
 
@@ -112,11 +112,12 @@ public class PlacesCachingManager {
     }
 
 
-    public void getPlaces(final FindLocationCallBack callback, final double lat, final double lon){
+    public void getPlaces(final FindLocationCallBack callback, final double lat, final double lon, final String place){
 
         initDB();
 
         new AsyncTask<Void, Void, Void>() {
+            ArrayList<HashMap<String, String>> nearbyPlacesList;
 
             private void deleteRow(long id){
 
@@ -138,8 +139,9 @@ public class PlacesCachingManager {
                 };
 
                 // Filter results WHERE "title" = 'My Title'
-                String selection = Location.COLUMN_LAT + " = ? AND " + Location.COLUMN_LON + " = ? ";
-                String[] selectionArgs = { Double.toString(lat), Double.toString(lon) };
+                String selection = Location.COLUMN_LAT + " = ? AND " + Location.COLUMN_LON + " = ? AND " +
+                         Location.COLUMN_PLACE + " = ? ";
+                String[] selectionArgs = { Double.toString(lat), Double.toString(lon) , place};
 
                 // How you want the results sorted in the resulting Cursor
                 // String sortOrder = FeedEntry.COLUMN_NAME_SUBTITLE + " DESC";
@@ -188,7 +190,7 @@ public class PlacesCachingManager {
                         null
                 );
 
-                List<HashMap<String, String>> nearbyPlacesList = new ArrayList<HashMap<String, String>>();
+                nearbyPlacesList = new ArrayList<HashMap<String, String>>();
                 while(placeCursor.moveToNext()) {
                     int LAT_INDEX = placeCursor.getColumnIndexOrThrow(Place.COLUMN_LAT);
                     int LON_INDEX = placeCursor.getColumnIndexOrThrow(Place.COLUMN_LON);
@@ -210,7 +212,6 @@ public class PlacesCachingManager {
                     nearbyPlacesList.add(place);
                 }
 
-                callback.locationResult(nearbyPlacesList);
 
                 if((timestamp - 2592000) > 0){
                     deleteRow(LocationId);
@@ -221,6 +222,7 @@ public class PlacesCachingManager {
             @Override
             protected void onPostExecute( final Void result ) {
                 // continue what you are doing...
+                callback.locationResult(nearbyPlacesList);
             }
         }.execute();
 
@@ -250,8 +252,9 @@ public class PlacesCachingManager {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(Place.COLUMN_LAT, place.get("lat"));
-        values.put(Place.COLUMN_LON, place.get("lon"));
+        values.put(Place.COLUMN_LON, place.get("lng"));
         values.put(Place.COLUMN_PLACE_NAME, place.get("place_name"));
+        values.put(Place.COLUMN_VICINITY, place.get("vicinity"));
         values.put(Place.LOCATION_ID, locationId);
 
         // Insert the new row, returning the primary key value of the new row
@@ -265,7 +268,7 @@ public class PlacesCachingManager {
         }
         if(db == null){
             db = mDbHelper.getWritableDatabase();
-          //  mDbHelper.onUpgrade(db, 0, 0);
+            //mDbHelper.onUpgrade(db, 0, 0); //reset db.
         }
 
     }

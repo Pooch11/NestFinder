@@ -49,9 +49,10 @@ public class NearbyPlaces implements FindLocationCallBack{
         this.googleMap = googleMap;
         this.callback = callback;
 
+
         PlacesCachingManager placesCachingManager = PlacesCachingManager.getmInstance(activity);
 
-        placesCachingManager.getPlaces(this,latitude,longitude);
+        placesCachingManager.getPlaces(this,latitude,longitude,store);
 
     }
 
