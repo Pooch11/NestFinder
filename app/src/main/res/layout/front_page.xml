@@ -27,16 +27,23 @@
             android:background="@color/colorPrimary"
             >
 
-            <SearchView
+            <android.support.v7.widget.SearchView
                 android:id="@+id/searchView"
-                android:layout_width="wrap_content"
+                android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:iconifiedByDefault="false"
                 android:queryBackground="@android:color/transparent"
-                android:queryHint="Search" />
+                 />
+            <Button
+                android:id="@+id/filter"
+                android:layout_width="94dp"
+                android:layout_height="match_parent"
+                android:text="Filter" />
 
         </android.support.v7.widget.Toolbar>
+
+
     </android.support.v7.widget.CardView>
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"

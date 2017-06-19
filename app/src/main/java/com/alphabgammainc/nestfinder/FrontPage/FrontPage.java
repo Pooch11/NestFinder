@@ -5,6 +5,11 @@ import android.app.Activity;
 
 import android.app.Fragment;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
@@ -12,16 +17,24 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.alphabgammainc.nestfinder.Classes.Locations;
+import com.alphabgammainc.nestfinder.FilterPage.FilterFragment1;
 import com.alphabgammainc.nestfinder.MapsActivity;
 import com.alphabgammainc.nestfinder.R;
 import com.alphabgammainc.nestfinder.Utilities.FabManager.FabManager;
@@ -57,7 +70,7 @@ import static android.content.ContentValues.TAG;
  */
 
 public class FrontPage extends Fragment implements OnMapReadyCallback, ManageMap,
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,LocationListener {
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,LocationListener,SearchView.OnQueryTextListener {
 
     private View mView;
     private Activity mActivity;
@@ -69,6 +82,7 @@ public class FrontPage extends Fragment implements OnMapReadyCallback, ManageMap
     private LinearLayoutManager layoutManager;
     private SwipeRefreshLayout swipeRefreshLayout;
     private FabManager fabManager;
+    private SearchView mSearchView;
     // Temporary until we actually start pulling data
     private AppBarLayout mAppBarLayout;
     private GoogleApiClient mGoogleApiClient;
@@ -183,6 +197,26 @@ public class FrontPage extends Fragment implements OnMapReadyCallback, ManageMap
         adapter = new FrontPageAdapter(mActivity, locations, this, listView);
 
         listView.setAdapter(adapter);
+
+        /**
+         * Search feature starts here.
+         */
+        final  Button filterButton = (Button) mView.findViewById(R.id.filter);
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /**
+                 * Open filter page
+                 */
+                Intent filterIntent = new Intent(mActivity,FilterFragment1.class);
+                mActivity.startActivity(filterIntent);
+
+            }
+        });
+        mSearchView = (SearchView) mView.findViewById(R.id.searchView);
+        setupSearchView();
+
+
 
         return mView;
     }
@@ -355,7 +389,7 @@ public class FrontPage extends Fragment implements OnMapReadyCallback, ManageMap
                         .setTitle("Location Permission Needed")
                         .setMessage("This app needs the Location permission, please accept to use location functionality")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
+
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //Prompt the user once explanation has been shown
                                 ActivityCompat.requestPermissions(mActivity,
@@ -373,5 +407,26 @@ public class FrontPage extends Fragment implements OnMapReadyCallback, ManageMap
                         MY_PERMISSIONS_REQUEST_LOCATION );
             }
         }
+    }
+
+    /**
+     * Helper Functions for search feature
+     */
+    private void setupSearchView(){
+        mSearchView.setIconifiedByDefault(false);
+        mSearchView.setOnQueryTextListener(this);
+        mSearchView.setSubmitButtonEnabled(true);
+        mSearchView.setQueryHint("Search Here");
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        String location = query;
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 }
