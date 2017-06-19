@@ -34,9 +34,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.alphabgammainc.nestfinder.Classes.Locations;
-import com.alphabgammainc.nestfinder.FilterPage.FilterFragment1;
+//import com.alphabgammainc.nestfinder.FilterPage.FilterFragment1;
 import com.alphabgammainc.nestfinder.MapsActivity;
 import com.alphabgammainc.nestfinder.R;
+import com.alphabgammainc.nestfinder.SearchFilter.FilterClass;
 import com.alphabgammainc.nestfinder.Utilities.FabManager.FabManager;
 import com.alphabgammainc.nestfinder.Utilities.PermissionsManager;
 import com.google.android.gms.common.ConnectionResult;
@@ -208,7 +209,7 @@ public class FrontPage extends Fragment implements OnMapReadyCallback, ManageMap
                 /**
                  * Open filter page
                  */
-                Intent filterIntent = new Intent(mActivity,FilterFragment1.class);
+                Intent filterIntent = new Intent(mActivity,FilterClass.class);
                 mActivity.startActivity(filterIntent);
 
             }

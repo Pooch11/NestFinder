@@ -56,7 +56,7 @@
         </activity>
         <activity android:label="@string/ad_posting_name" android:name=".Landlord.AdPostingManager"/>
         <activity android:label="@string/ad_details_maanger" android:name=".DetailsPage.DetailsPage"/>
-        <activity android:label="Filter Manager" android:name=".FilterPage.FilterFragment1" />
+        <activity android:label="Filter Manager" android:name=".SearchFilter.FilterClass" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

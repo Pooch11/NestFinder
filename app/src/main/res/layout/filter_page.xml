@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/priceRange"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="44dp"
+            android:text="Price Range" />
+
+        <Spinner
+            android:id="@+id/priceLow"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/priceRange" />
+
+        <TextView
+            android:id="@+id/hyphen"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/priceRange"
+            android:layout_toEndOf="@+id/priceLow"
+            android:text="-" />
+
+        <Spinner
+            android:id="@+id/priceHigh"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/hyphen">
+
+        </Spinner>
+
+        <TextView
+            android:id="@+id/Beds"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/priceLow"
+            android:layout_marginTop="28dp"
+            android:text="Beds" />
+
+        <SeekBar
+            android:id="@+id/seekbar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Beds"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/Beds"
+            android:layout_toEndOf="@+id/Beds"
+            android:max="10"
+            android:progress="3" />
+
+        <TextView
+            android:id="@+id/petTag"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/Beds"
+            android:layout_marginTop="40dp"
+            android:layout_toStartOf="@+id/seekbar"
+            android:text="Pets" />
+
+        <CheckBox
+            android:id="@+id/dogCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/petTag"
+            android:layout_alignTop="@+id/petTag"
+            android:layout_toStartOf="@+id/priceHigh"
+            android:text="Dogs" />
+
+        <CheckBox
+            android:id="@+id/catCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/dogCheckbox"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/dogCheckbox"
+            android:layout_marginEnd="14dp"
+            android:text="Cat" />
+
+        <Button
+            android:id="@+id/moreOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dogCheckbox"
+            android:layout_marginTop="54dp"
+            android:layout_toEndOf="@+id/priceLow"
+            android:text="More Option" />
+
+
+    </RelativeLayout>
+</LinearLayout>
