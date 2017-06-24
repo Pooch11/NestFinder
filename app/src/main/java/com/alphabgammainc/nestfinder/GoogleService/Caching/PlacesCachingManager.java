@@ -268,7 +268,7 @@ public class PlacesCachingManager {
         }
         if(db == null){
             db = mDbHelper.getWritableDatabase();
-            //mDbHelper.onUpgrade(db, 0, 0); //reset db.
+            mDbHelper.onUpgrade(db, 0, 0); //reset db.
         }
 
     }
