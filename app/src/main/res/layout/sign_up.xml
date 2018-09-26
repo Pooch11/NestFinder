@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <!-- gotta limit characters later-->
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/username_hint"
+        android:paddingLeft="@dimen/text_view_padding_left"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginRight="@dimen/text_view_margin_right"
+        android:layout_marginLeft="@dimen/text_view_margin_left"
+        android:textColorHint="@color/darkgray"
+        android:background="@drawable/one_sided_border_editfield"
+        android:id="@+id/username"
+        android:layout_marginTop="55dp"
+        android:layout_centerHorizontal="true" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/password_hint"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:paddingLeft="@dimen/text_view_padding_left"
+        android:textColorHint="@color/darkgray"
+        android:layout_marginRight="@dimen/text_view_margin_right"
+        android:layout_marginLeft="@dimen/text_view_margin_left"
+        android:background="@drawable/one_sided_border_editfield"
+        android:id="@+id/password"
+        android:layout_marginTop="35dp"
+        android:layout_centerHorizontal="true" />
+
+        <!-- same here probably 255 characters or so.-->
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/confirm_password_hint"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:paddingLeft="@dimen/text_view_padding_left"
+        android:textColorHint="@color/darkgray"
+        android:layout_marginRight="@dimen/text_view_margin_right"
+        android:layout_marginLeft="@dimen/text_view_margin_left"
+        android:background="@drawable/one_sided_border_editfield"
+        android:id="@+id/confirmPasword"
+        android:layout_marginTop="35dp"
+        android:layout_centerHorizontal="true" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="create account"
+        android:id="@+id/signup"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:background="@drawable/create_ad_next_button"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/lightpurple"
+        android:layout_below="@+id/remember_me" />
+
+
+
+</LinearLayout>

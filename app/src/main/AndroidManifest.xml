@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.alphabgammainc.nestfinder">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.alphabgammainc.nestfinder"
+    tools:ignore="ExtraText">
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -47,8 +49,7 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" android:screenOrientation="userPortrait">
-
-            <intent-filter>
+            <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -57,6 +58,8 @@
         <activity android:label="@string/ad_posting_name" android:name=".Landlord.AdPostingManager"/>
         <activity android:label="@string/ad_details_maanger" android:name=".DetailsPage.DetailsPage"/>
         <activity android:label="Filter Manager" android:name=".SearchFilter.FilterClass" />
+        <activity android:label="@string/account_profile" android:name=".User.AccountProfile">
+        </activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

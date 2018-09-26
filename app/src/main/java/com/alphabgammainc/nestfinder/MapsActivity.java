@@ -15,6 +15,7 @@ import com.alphabgammainc.nestfinder.DetailsPage.DetailsPage;
 import com.alphabgammainc.nestfinder.FirebaseConnection.DataBaseConnectionPresenter;
 import com.alphabgammainc.nestfinder.FrontPage.FrontPage;
 import com.alphabgammainc.nestfinder.Loading.InitialStartUp;
+import com.alphabgammainc.nestfinder.User.UserManager;
 import com.alphabgammainc.nestfinder.Utilities.FabManager.FabManager;
 import com.alphabgammainc.nestfinder.Utilities.FragmentCallback;
 import com.alphabgammainc.nestfinder.Utilities.ImageCallBack;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 public class MapsActivity extends AppCompatActivity implements ImageCallBack{
     private FragmentCallback fragmentCallback;
     private ArrayList<Locations> locationses;
+    private UserManager userManager;
     FragmentManager fragmentManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,4 +110,11 @@ public class MapsActivity extends AppCompatActivity implements ImageCallBack{
         // we dont need to display it
     }
 
+    public UserManager getUserManager() {
+        return userManager;
+    }
+
+    public void setUserManager(UserManager userManager) {
+        this.userManager = userManager;
+    }
 }

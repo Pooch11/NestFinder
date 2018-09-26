@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.alphabgammainc.nestfinder.Classes.Address;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,6 +64,7 @@ public class LatLong {
      */
 
     private class requestAddressToGoogle extends AsyncTask<String,Void,String> {
+        private LatLongObj obj;
         @Override
         protected String doInBackground(String... params) {
             String link = params[0];
@@ -77,7 +79,7 @@ public class LatLong {
                     buffer.append(line+"\n");
                 }
                 //Log.e(TAG, "Response from url: " + buffer.toString());
-                conversionCallback.setlatlongobj(JSONParser(buffer.toString()));
+                obj = JSONParser(buffer.toString());
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -89,6 +91,11 @@ public class LatLong {
             return null;
         }
 
+        @Override
+        protected void onPostExecute(String s) {
+            conversionCallback.setlatlongobj(obj);
+
+        }
     }
     private LatLongObj JSONParser (String s) throws JSONException {
 

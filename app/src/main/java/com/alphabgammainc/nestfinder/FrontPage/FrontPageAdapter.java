@@ -65,7 +65,7 @@ public class FrontPageAdapter  extends RecyclerView.Adapter<FrontPageAdapter.Vie
 
         ImageManager.downloadImage(mActivity,holder.image, locationses.get(position).getRentImage().get(0));
         holder.address.setText(this.locationses.get(position).getAddress());
-        holder.price.setText("$"+Double.toString((this.locationses.get(position).getPrice())));
+        holder.price.setText("Price : $"+Double.toString((this.locationses.get(position).getPrice())));
         holder.details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +104,13 @@ public class FrontPageAdapter  extends RecyclerView.Adapter<FrontPageAdapter.Vie
         }
 
     }
+
+    /**
+     *
+     * @param v the specific view of the list item
+     * @param position position item
+     * @todo consider removing the three dots and adding learn more on the bottom instead.
+     */
     public void showPopUp(View v, final int position) {
 
         PopupMenu popup = new PopupMenu(mActivity, v, Gravity.TOP);

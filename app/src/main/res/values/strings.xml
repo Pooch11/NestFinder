@@ -5,6 +5,10 @@
     <string name="ad_posting_name">Ad Post Manager</string>
     <string name="ad_details_maanger">Details Manager</string>
     <string name="action_settings">Settings</string>
+    <string name="CREDENTIALS">Credentials</string>
+    <string name="PASSWORD">Password</string>
+    <string name="account_profile">Account Profile</string>
+    <string name="USERNAME">Username</string>
 
     <!-- Start user interaction text -->
     <string name="ad_post_welcome">Tell us a little bit about the place!</string>
@@ -14,6 +18,14 @@
 
 
     <!-- END-->
+
+    <!-- Start account creation/ sign in text -->
+    <string name="account_creation_button">Create Account</string>
+    <string name="account_sign_in_button">Login</string>
+    <string name="username_hint">Email Address</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <!-- END -->
 
     <!-- START  Amenities -->
     <string name="gas_station">gas_station</string>
